@@ -1,0 +1,28 @@
+services:
+  app:
+    build: .
+    volumes:
+      - ./data:/app/data
+    environment:
+      PYTHONPATH: /app
+
+  # Persistent hourly sync: current season games_{YEAR}.parquet + data/stats_tables/
+  # docker compose --profile live up live
+  # Optional: PIPELINE_SEASON=2026 LIVE_INTERVAL_SEC=3600
+  live:
+    profiles: [live]
+    build: .
+    volumes:
+      - ./data:/app/data
+    environment:
+      PYTHONPATH: /app
+      LIVE_INTERVAL_SEC: "3600"
+    command:
+      - /bin/sh
+      - -c
+      - |
+        while true; do
+          python -m app.main live --kalshi \
+            || true
+          sleep "$${LIVE_INTERVAL_SEC}"
+        done

@@ -1,0 +1,23 @@
+{
+  "timestamp_utc": "2026-04-15T02:31:39.675573+00:00",
+  "outputs": [
+    {
+      "out_path": "/app/data/games_2026.parquet",
+      "row_count": 2796,
+      "season": 2026
+    }
+  ],
+  "output_paths": [
+    "/app/data/games_2026.parquet"
+  ],
+  "subcommand": "live",
+  "seasons": [
+    2026
+  ],
+  "final_only": false,
+  "platoon_mlb": true,
+  "rolling": true,
+  "bullpen": true,
+  "kalshi": true,
+  "stats_dir": "/app/data/stats_tables"
+}
